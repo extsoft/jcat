@@ -9,10 +9,11 @@ Table of Contents
   - [comments-automated-tests](#comments-automated-tests)
   - [Table of contents](#table-of-contents)
   - [Pages](#pages)
-    - ['Main' screen](#main-screen)
-    - ['Actions panel' on main screen](#actions-panel-on-main-screen)
-    - ['Comment' screen](#comment-screen)
-  - [Tests](#tests)  
+    - [Main screen](#main-screen)
+    - [Actions panel on main screen](#actions-panel-on-main-screen)
+    - [Comment screen](#comment-screen)
+  - [Automated tests](#automated-tests)
+    - [Run](#run)
 
 Pages
 =====
@@ -20,19 +21,23 @@ Pages
 Main screen
 -------------
 
-![](https://github.com/extsoft/comments-automated-tests/blob/feature/pages/pages/main-page.png)
+![](pages/main-page.png)
 
 Actions panel on main screen
 ----------------------------
 
-![](https://github.com/extsoft/comments-automated-tests/blob/feature/pages/pages/actions-panel.png)
+![](pages/actions-panel.png)
 
 Comment screen
 --------------
 
-![](https://github.com/extsoft/comments-automated-tests/blob/feature/pages/pages/comment.png)
+![](pages/comment.png)
 
-Tests
-=====
+Automated tests
+===============
 
-TBA
+Run
+--- 
+
+1. Start up the ChromeDriver executable ([click to read more ](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver))
+2. Run `AutomatedTests.java` in your IDE using TestNG plugin.
