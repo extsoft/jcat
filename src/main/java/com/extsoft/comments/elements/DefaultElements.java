@@ -17,14 +17,15 @@ public class DefaultElements implements Elements {
         this.elementsLocator = elementsLocator;
     }
 
-
     @Override
-    public Iterator<Element> instances() {
-        List<Element> elements = webDriver.findElements(elementsLocator)
+    public Iterator<Element> find(Criteria criteria) {
+        return instances().stream().filter(criteria::relevant).collect(Collectors.toList()).iterator();
+    }
+
+    private List<Element> instances() {
+        return webDriver.findElements(elementsLocator)
                 .stream()
                 .map(DefaultElement::new)
                 .collect(Collectors.toList());
-        return elements.iterator();
-
     }
 }
