@@ -21,13 +21,9 @@ public class SelfLoadedComments implements Comments {
 
     private void switchPage() {
         Elements elements = new DefaultElements(webDriver, By.cssSelector(".webgrid-footer a"));
-        Iterator<Element> instances = elements.instances();
-        while (instances.hasNext()) {
-            Button element = new DefaultButton(instances.next());
-            if (element.name().contains(page)) {
-                element.press();
-                break;
-            }
+        Iterator<Element> iterator = elements.find(new ContainsText(page));
+        if (iterator.hasNext()) {
+            new DefaultButton(iterator.next()).press();
         }
     }
 
