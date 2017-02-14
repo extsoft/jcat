@@ -1,12 +1,12 @@
 package com.extsoft.comments.comments;
 
+import com.extsoft.comments.elements.AllElements;
 import com.extsoft.comments.elements.DefaultElements;
+import com.extsoft.comments.elements.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 final class Rows {
     private final WebDriver webDriver;
@@ -18,10 +18,18 @@ final class Rows {
     }
 
     Iterator<Row> rows() {
-        List<Row> rows = new ArrayList<>();
-        new DefaultElements(webDriver, by)
-                .instances()
-                .forEachRemaining(element -> rows.add(new Row(webDriver, element)));
-        return rows.iterator();
+        Iterator<Element> iterator = new DefaultElements(webDriver, by).find(new AllElements());
+        return new Iterator<Row>() {
+
+            @Override
+            public boolean hasNext() {
+                return iterator.hasNext();
+            }
+
+            @Override
+            public Row next() {
+                return new Row(webDriver, iterator.next());
+            }
+        };
     }
 }
