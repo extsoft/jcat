@@ -51,8 +51,9 @@ public class RealComments implements Comments {
 
     @Override
     public void delete(Comment comment) {
-//        new DefaultButton(webDriver, By.cssSelector("input[value='Delete']")).press();
-        throw new NotImplementedException("IMPL");
+        comment.select();
+        new DefaultButton(webDriver, By.cssSelector("input[value='Delete']")).press();
+        new DefaultButton(webDriver, By.cssSelector(".ui-button:first-child")).press();
     }
 
     @Override

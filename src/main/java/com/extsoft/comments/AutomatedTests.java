@@ -41,6 +41,16 @@ public class AutomatedTests {
         assert mainScreen.contains(duplicate);
     }
 
+    @Test
+    public void testCommentDeletion() {
+        MainScreen mainScreen = new RealMainScreen(driver);
+        mainScreen.open();
+        Comment comment = new SaveAndReturnComment(driver, new DefaultComment(driver, "dd47", "47", false));
+        mainScreen.lastComments().create(comment);
+        mainScreen.lastComments().delete(comment);
+        assert !mainScreen.contains(comment);
+    }
+
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
