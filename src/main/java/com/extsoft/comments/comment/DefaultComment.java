@@ -1,8 +1,12 @@
 package com.extsoft.comments.comment;
 
+import com.extsoft.comments.comments.Row;
+import com.extsoft.comments.comments.Rows;
 import com.extsoft.comments.elements.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.util.Iterator;
 
 public class DefaultComment implements Comment {
 
@@ -62,6 +66,19 @@ public class DefaultComment implements Comment {
                 ", number='" + number + '\'' +
                 ", active=" + active +
                 '}';
+    }
+
+    @Override
+    public void select() {
+        Iterator<Row> iterator = new Rows(webDriver, By.xpath("//*/tbody/*")).rows();
+        while (iterator.hasNext()) {
+            Element element = iterator.next().element();
+            String currentId = new DefaultElement(element, By.cssSelector(".numbercolumn")).getText();
+            if (currentId.equals(number)) {
+                new SmartCheckBox(new DefaultCheckBox(new DefaultElement(element, By.cssSelector(".checkedcolumn"))))
+                        .check();
+            }
+        }
     }
 
     @Override

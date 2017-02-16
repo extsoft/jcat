@@ -7,20 +7,20 @@ import com.extsoft.comments.elements.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-final class Row {
+public final class Row {
     private final WebDriver webDriver;
     private final Element element;
 
-    Row(WebDriver webDriver, Element element) {
+    public Row(WebDriver webDriver, Element element) {
         this.webDriver = webDriver;
         this.element = element;
     }
 
-    Element element() {
+    public Element element() {
         return element;
     }
 
-    Comment comment() {
+    public Comment comment() {
         return new DefaultComment(
                 webDriver,
                 new DefaultElement(element, By.cssSelector(".textcolumn")).getText(),

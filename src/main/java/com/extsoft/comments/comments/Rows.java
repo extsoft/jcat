@@ -8,16 +8,16 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.Iterator;
 
-final class Rows {
+public final class Rows {
     private final WebDriver webDriver;
     private final By by;
 
-    Rows(WebDriver webDriver, By by) {
+    public Rows(WebDriver webDriver, By by) {
         this.webDriver = webDriver;
         this.by = by;
     }
 
-    Iterator<Row> rows() {
+    public Iterator<Row> rows() {
         Iterator<Element> iterator = new DefaultElements(webDriver, by).find(new AllElements());
         return new Iterator<Row>() {
 

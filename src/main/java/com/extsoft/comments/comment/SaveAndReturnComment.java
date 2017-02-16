@@ -33,4 +33,9 @@ public class SaveAndReturnComment implements Comment {
     public String info() {
         return comment.info();
     }
+
+    @Override
+    public void select() {
+        comment.select();
+    }
 }

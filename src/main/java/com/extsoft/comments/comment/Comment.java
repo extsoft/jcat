@@ -9,4 +9,6 @@ public interface Comment {
     void save();
 
     String info();
+
+    void select();
 }
