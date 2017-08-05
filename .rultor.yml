@@ -1,0 +1,11 @@
+architect: extsoft
+docker:
+  image: extsoft/rultor-runtime:j8m35p0
+merge:
+  fast-forward: only
+  rebase: true
+  script: |-
+    mvn clean test
+    pdd --source=$(pwd) --verbose --file=/dev/null
+release:
+  script: echo "Release ${tag}"
