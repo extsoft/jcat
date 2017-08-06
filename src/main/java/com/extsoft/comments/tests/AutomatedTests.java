@@ -1,5 +1,7 @@
-package com.extsoft.comments;
+package com.extsoft.comments.tests;
 
+import com.extsoft.comments.MainScreen;
+import com.extsoft.comments.RealMainScreen;
 import com.extsoft.comments.comment.Comment;
 import com.extsoft.comments.comment.DefaultComment;
 import com.extsoft.comments.comment.SaveAndReturnComment;

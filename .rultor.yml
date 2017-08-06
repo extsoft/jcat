@@ -6,7 +6,7 @@ merge:
   fast-forward: only
   rebase: true
   script: |-
-    mvn clean test
+    mvn clean package
     pdd --source=$(pwd) --verbose --file=/dev/null
 release:
   script: echo "Release ${tag}"
