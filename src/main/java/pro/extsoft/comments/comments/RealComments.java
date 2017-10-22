@@ -1,12 +1,11 @@
 package pro.extsoft.comments.comments;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import pro.extsoft.comments.comment.Comment;
 import pro.extsoft.comments.elements.DefaultButton;
 import pro.extsoft.comments.elements.DefaultCheckBox;
 import pro.extsoft.comments.elements.DefaultElement;
-import org.apache.commons.lang3.NotImplementedException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import java.util.Iterator;
 
@@ -46,7 +45,7 @@ public class RealComments implements Comments {
     @Override
     public void edit(Comment original, Comment changes) {
 //        new DefaultButton(webDriver, By.cssSelector("input[value='Edit..']")).press();
-        throw new NotImplementedException("IMPL");
+        throw new UnsupportedOperationException("IMPL");
     }
 
     @Override
