@@ -22,7 +22,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.extsoft.comments.App</mainClass>
+                            <mainClass>pro.extsoft.comments.App</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
