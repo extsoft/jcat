@@ -1,12 +1,8 @@
 package pro.extsoft.comments;
 
 import io.github.tatools.sunshine.core.*;
-import io.github.tatools.sunshine.testng.CachedTestNGSuite;
 import io.github.tatools.sunshine.testng.LoadableTestNGSuite;
-import io.github.tatools.sunshine.testng.TestNGEngine;
-
-import java.io.IOException;
-import java.nio.file.Files;
+import io.github.tatools.sunshine.testng.TestNGKernel;
 
 /**
  * @author Dmytro Serdiuk (dmytro.serdiuk@gmail.com)
@@ -14,19 +10,32 @@ import java.nio.file.Files;
  * @since 0.1
  */
 public class App {
-    public static void main(String[] args) throws IOException, EngineException {
-        new TestNGEngine(
-                new CachedTestNGSuite(
+    public static void main(String[] args) {
+        new Sun(
+                new TestNGKernel(
                         new LoadableTestNGSuite(
-                                new FileSystemOfClasspathClasses(),
-                                new DirectoryWithAutomaticCreation(
-                                        new DirectoryWithAutomaticDeletion(
-                                                new DirectorySafe(Files.createTempDirectory("comments-at"))
+                                new RegexCondition(
+                                        new AttributeWithPrintableValue(
+                                                "The following pattern will be used for classes filtering:",
+                                                new AttributeFromSequence(
+                                                        new AttributeOfTestPatternFromCli(),
+                                                        new Attribute() {
+                                                            @Override
+                                                            public String value() {
+                                                                return "^pro.extsoft.comments.tests(.+)?";
+                                                            }
+
+                                                            @Override
+                                                            public boolean present() {
+                                                                return true;
+                                                            }
+                                                        }
+                                                )
                                         )
-                                ),
-                                new RegexCondition("^com.extsoft.comments.tests(.+)?")
+                                )
                         )
                 )
-        ).run();
+
+        ).shine();
     }
 }
