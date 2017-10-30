@@ -39,12 +39,12 @@ Pages
 =====
 Main screen
 -----------
-![](src/pages/main-page.png)
+![](docs/pages/main-page.png)
 
 Actions panel on main screen
 ----------------------------
-![](src/pages/actions-panel.png)
+![](docs/pages/actions-panel.png)
 
 Comment screen
 --------------
-![](src/pages/comment.png)
+![](docs/pages/comment.png)
