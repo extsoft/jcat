@@ -1,6 +1,7 @@
 package pro.extsoft.comments.tests;
 
 import org.testng.annotations.Test;
+import pro.extsoft.comments.Base;
 import pro.extsoft.comments.MainScreen;
 import pro.extsoft.comments.RealMainScreen;
 import pro.extsoft.comments.comment.Comment;

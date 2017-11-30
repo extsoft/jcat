@@ -1,4 +1,4 @@
-package pro.extsoft.comments.tests;
+package pro.extsoft.comments;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -10,9 +10,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-abstract class Base {
+public abstract class Base {
 
-    WebDriver driver;
+    protected WebDriver driver;
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
