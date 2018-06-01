@@ -1,6 +1,10 @@
 # Comments automated tests
 This repo provides a sample set of automated tests for [http://commentssprintone.azurewebsites.net]() application.
 
+![](https://img.shields.io/github/license/extsoft/jcat.svg)
+![](https://img.shields.io/docker/automated/extsoft/jcat.svg)
+![](https://img.shields.io/docker/build/extsoft/jcat.svg)
+
 ## Used tools
 - [Java 8](http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html) as a programming language
 - [maven](https://maven.apache.org) as a build system
