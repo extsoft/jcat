@@ -1,6 +1,9 @@
 package pro.extsoft.comments;
 
+import io.qameta.allure.Allure;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -8,6 +11,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import java.io.ByteArrayInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -42,6 +46,11 @@ public abstract class Base {
 
     @AfterTest
     public void tearDown() {
+        Allure.addAttachment(
+                "before-quit", "image/png",
+                new ByteArrayInputStream(((TakesScreenshot) this.browser()).getScreenshotAs(OutputType.BYTES)),
+                ".png"
+        );
         this.browser().quit();
     }
 }
