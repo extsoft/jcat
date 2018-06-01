@@ -1,50 +1,35 @@
-**Comments automated tests**
-============================
+# Comments automated tests
+This repo provides a sample set of automated tests for [http://commentssprintone.azurewebsites.net]() application.
 
-This repo provides a vision of an object-oriented automated tests for http://commentssprintone.azurewebsites.net 
-application. The main goal is to show how to use OOP paradigm for test automation tasks.
 
-Table of contents 
------------------
-  - [Automated tests](#automated-tests)
-    - [Create jar](#create-jar-with-tests)
-    - [Run tests](#run-tests)
-    - [Allure report](#allure-report)
-  - [Pages](#pages)
-    - [Main screen](#main-screen)
-    - [Actions panel on main screen](#actions-panel-on-main-screen)
-    - [Comment screen](#comment-screen)
-  
-Automated tests
-===============
-Create jar with tests
----------------------
-After `mvn clean package` execution you will see `comments-at-x.x.x-jar-with-dependencies.jar` jar file under `target`
-directory (`x.x.x` is a `version` property from [pom.xml](pom.xml)).
 
-Run tests
----------
-1. Run ChromeDriver as a 
-[standalone process](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver#running-chromedriver-as-a-standalone-process)
-2. Execute `java -jar target/comments-at-x.x.x-jar-with-dependencies.jar` command (replace `x.x.x` with a proper 
-`version` from [pom.xml](pom.xml))
+# Usage
+1. Clone the repo
+2. Package tests  with `mvn clean package` (a JAR file is located under `target` directory and is named like `comments-at-x.x.x-jar-with-dependencies.jar` , where `x.x.x` is a `version` property from [pom.xml](pom.xml)).
+3. Run tests with `java -jar comments-at-x.x.x-jar-with-dependencies.jar`
 
-Allure report
--------------
-`allure-results` directory will be created within the directory where you run the tests. 
+The tests are going to connect to a remote driver. It can be either a WebDriver run as a 
+ standalone process ([a sample for `ChromeDriver`](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver#running-chromedriver-as-a-standalone-process)) or [Selenium Grid](https://www.seleniumhq.org/docs/07_selenium_grid.jsp).
 
-Just run `allure serve` to see the Allure HTML report.
+The [Allure](http://allure.qatools.ru) report will be stored to `allure-results` directory within the directory where you run the tests. Just run `allure serve` to see the Allure HTML report.
 
-Pages
-=====
-Main screen
------------
+## Configuration options
+There are a couple of system properties for tests configuration.
+
+System property | Options | Default value | Description
+---|---|---|---
+`browser` | `chrome` or `firefox` | `chrome` | A browser for testing
+`selenium-url` | Any remote URL | `http://localhost:9515` (`ChromeDriver`) | An URL to remove driver or Selenium Grid
+
+
+`java -Dbrowser=firefox -Dselenium-url=http://127.0.0.1:4444 -jar comments-at-x.x.x-jar-with-dependencies.jar` runs tests on Firefox browser using started `geckodriver` on `4444` port.
+
+# Application pages
+## Main screen
 ![](docs/pages/main-page.png)
 
-Actions panel on main screen
-----------------------------
+## Actions panel on main screen
 ![](docs/pages/actions-panel.png)
 
-Comment screen
---------------
+## Comment screen
 ![](docs/pages/comment.png)
