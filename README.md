@@ -1,7 +1,13 @@
 # Comments automated tests
 This repo provides a sample set of automated tests for [http://commentssprintone.azurewebsites.net]() application.
 
-
+## Used tools
+- [Java 8](http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html) as a programming language
+- [maven](https://maven.apache.org) as a build system
+- [Allure](http://allure.qatools.ru) as a reporting engine
+- [Selenium](https://www.seleniumhq.org) as a WEB automation framework
+- [TestNG](http://testng.org/doc/) as a tests runner
+- [Sunshine](https://github.com/tatools/sunshine/) as a suite manager for TestNG
 
 # Usage
 1. Clone the repo
