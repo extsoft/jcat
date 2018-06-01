@@ -16,14 +16,14 @@ import pro.extsoft.comments.comment.SaveAndReturnComment;
 public class CommentDuplication extends Base {
     @Test
     public void testCommentDuplication() {
-        MainScreen mainScreen = new RealMainScreen(driver);
+        MainScreen mainScreen = new RealMainScreen(this.browser());
         mainScreen.open();
         Comment comment = new SaveAndReturnComment(
-                driver, new DefaultComment(driver, "dd46", "46", false)
+                this.browser(), new DefaultComment(this.browser(), "dd46", "46", false)
         );
         mainScreen.comments("1").create(comment);
         Comment duplicate = new SaveAndReturnComment(
-                driver, new DefaultComment(driver, "duplicate", "48", false)
+                this.browser(), new DefaultComment(this.browser(), "duplicate", "48", false)
         );
         mainScreen.lastComments().duplicate(comment, duplicate);
         assert mainScreen.contains(duplicate);

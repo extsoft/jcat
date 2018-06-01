@@ -17,11 +17,11 @@ import pro.extsoft.comments.comments.Comments;
 public class CommentCreation extends Base {
     @Test
     public void testCommentCreation() {
-        MainScreen mainScreen = new RealMainScreen(driver);
+        MainScreen mainScreen = new RealMainScreen(this.browser());
         mainScreen.open();
         Comments comments = mainScreen.comments("1");
         Comment comment = new SaveAndReturnComment(
-                driver, new DefaultComment(driver, "dd45", "45", false)
+                this.browser(), new DefaultComment(this.browser(), "dd45", "45", false)
         );
         comments.create(comment);
         assert mainScreen.contains(comment);

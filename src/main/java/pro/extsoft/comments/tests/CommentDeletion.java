@@ -16,10 +16,10 @@ import pro.extsoft.comments.comment.SaveAndReturnComment;
 public class CommentDeletion extends Base {
     @Test
     public void testCommentDeletion() {
-        MainScreen mainScreen = new RealMainScreen(driver);
+        MainScreen mainScreen = new RealMainScreen(this.browser());
         mainScreen.open();
         Comment comment = new SaveAndReturnComment(
-                driver, new DefaultComment(driver, "dd47", "47", false)
+                this.browser(), new DefaultComment(this.browser(), "dd47", "47", false)
         );
         mainScreen.lastComments().create(comment);
         mainScreen.lastComments().delete(comment);
