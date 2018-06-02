@@ -4,6 +4,7 @@ This repo provides a sample set of automated tests for [http://commentssprintone
 ![](https://img.shields.io/github/license/extsoft/jcat.svg)
 ![](https://img.shields.io/docker/automated/extsoft/jcat.svg)
 ![](https://img.shields.io/docker/build/extsoft/jcat.svg)
+![](https://travis-ci.org/extsoft/jcat.svg?branch=master)
 
 ## Used tools
 - [Java 8](http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html) as a programming language
