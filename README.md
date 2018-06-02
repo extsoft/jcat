@@ -13,6 +13,7 @@ This repo provides a sample set of automated tests for [http://commentssprintone
 - [TestNG](http://testng.org/doc/) as a tests runner
 - [Sunshine](https://github.com/tatools/sunshine/) as a suite manager for TestNG
 - [Docker](https://www.docker.com) as an infrastructure manager
+- [SeleniumHQ/docker-selenium](https://github.com/SeleniumHQ/docker-selenium) as a [Selenium Grid](https://www.seleniumhq.org/docs/07_selenium_grid.jsp)
 
 # Running the tests
 There are two supported browsers:
@@ -25,7 +26,7 @@ The tests are going to connect to a remote driver. It can be either a WebDriver 
 Also, please pay attention to [configuration options](#configuration-options) and [reporting](#reporting).
 
 ## Docker
-**Using local browser driver**
+### Using local browser driver
 ```bash
 docker run -it \
        --net=host \
@@ -40,7 +41,7 @@ As the browser driver is run on the localhost, we have to give proper URL for `S
 - `docker.for.mac.localhost` for OSX
 - `localhost` for Linux
 
-**Using Selenium Grid**
+### Using Selenium Grid
 ```bash
 docker run -it \
        --env SELENIUM_URL=http://selenium-hub:4444/wd/hub \
@@ -49,6 +50,24 @@ docker run -it \
        extsoft/jcat:latest
 ```
 If Selenium Grid is run on your local environment using docker, you have to add `--net=<grid network>` to the command above.
+
+### Using docker-compose
+First of all, you need to download a YAML file: 
+```bash
+curl -o docker-compose.yaml https://raw.githubusercontent.com/extsoft/jcat/master/docker-compose.yaml
+```
+
+Then, run tests: 
+```bash
+docker-compose up --abort-on-container-exit --timeout 120
+```
+:exclamation: This command runs the Selenium Grid with `firefox` and `chrome` browsers and executes the tests in parallel.  If you need one of browsers, add `jcat-on-firefox` or `jcat-on-chrome` to the end of the command.
+
+After the tests execution, the Allure results directories are created: `allure-results-chrome` and `allure-results-firefox`. 
+
+If you need Selenium Grid for development purposes, run `docker-compose up -d firefox60 chrome66`. As the Grid's port is mapped to a host machine, you view Grid's console on [http://localhost:4444/grid/console]().
+
+Use `docker-compose down` to destroy the environment.
 
 ## From source code
 1. Clone the repo

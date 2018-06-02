@@ -1,0 +1,44 @@
+version: '3.0'
+services:
+  chrome66:
+    image: selenium/node-chrome:3.11
+    depends_on:
+    - selenium-hub
+    environment:
+      HUB_HOST: selenium-hub
+      HUB_PORT: '4444'
+
+  firefox60:
+    image: selenium/node-firefox:3.12
+    depends_on:
+    - selenium-hub
+    environment:
+      HUB_HOST: selenium-hub
+      HUB_PORT: '4444'
+
+  selenium-hub:
+    image: selenium/hub:3.12
+    ports:
+    - 4444:4444
+
+  jcat-on-firefox:
+    image: extsoft/jcat:latest
+    build: .
+    depends_on:
+    - firefox60
+    environment:
+      BROWSER: firefox
+      SELENIUM_URL: http://selenium-hub:4444/wd/hub
+    volumes:
+    - ./allure-results-chrome:/jcat/allure-results:rw
+
+  jcat-on-chrome:
+    image: extsoft/jcat:latest
+    build: .
+    depends_on:
+    - chrome66
+    environment:
+      BROWSER: chrome
+      SELENIUM_URL: http://selenium-hub:4444/wd/hub
+    volumes:
+    - ./allure-results-firefox:/jcat/allure-results:rw
