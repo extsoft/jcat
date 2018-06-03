@@ -30,7 +30,7 @@ services:
       BROWSER: firefox
       SELENIUM_URL: http://selenium-hub:4444/wd/hub
     volumes:
-    - ./allure-results-chrome:/jcat/allure-results:rw
+    - ./allure-results-firefox:/jcat/allure-results:rw
 
   jcat-on-chrome:
     image: extsoft/jcat:latest
@@ -41,4 +41,4 @@ services:
       BROWSER: chrome
       SELENIUM_URL: http://selenium-hub:4444/wd/hub
     volumes:
-    - ./allure-results-firefox:/jcat/allure-results:rw
+    - ./allure-results-chrome:/jcat/allure-results:rw
