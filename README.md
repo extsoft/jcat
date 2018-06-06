@@ -22,12 +22,15 @@ There are two supported browsers:
 - `chrome` means [Google Chrome](https://www.google.com/chrome/)
 
 The tests are going to connect to a remote driver. It can be either a WebDriver run as a 
- standalone process ([instructions](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver#running-chromedriver-as-a-standalone-process) for `ChromeDriver`) or [Selenium Grid](https://www.seleniumhq.org/docs/07_selenium_grid.jsp).
+ standalone process or [Selenium Grid](https://www.seleniumhq.org/docs/07_selenium_grid.jsp).
 
 Also, please pay attention to [configuration options](#configuration-options) and [reporting](#reporting).
 
 ## Docker
-### Using local browser driver
+### Using docker's image
+First of all, you need to run desired WebDriver (`chromedriver` or `geckodriver`) as a standalone application ([instructions](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver#running-chromedriver-as-a-standalone-process) for `ChromeDriver`). If you have a working Selenium Grid, you can use it instead.
+
+Then, run the following command with the correct value for `SELENIUM_URL` and `BROWSER` (see [configuration options](#configuration-options)  for the details):
 ```bash
 docker run -it \
        --net=host \
@@ -37,22 +40,16 @@ docker run -it \
        extsoft/jcat:latest
 ```
 
-As the browser driver is run on the localhost, we have to give proper URL for `SELENIUM_URL` option. Docker provides several networking features for each OS which allow binding of host machine's hostname into a container. As the result, if you bind a container to host's network with `--net=host` and want access host's resources, correct hostname is
+:exclamation:As the browser driver is run on the localhost, we have to give proper URL for `SELENIUM_URL` option. Docker provides several networking features for each OS which allow binding of host machine's hostname into a container. As the result, if you bind a container to host's network with `--net=host` and want access host's resources, correct hostname is
 - `docker.for.win.localhost` for Windows
 - `docker.for.mac.localhost` for OSX
 - `localhost` for Linux
 
-### Using Selenium Grid
-```bash
-docker run -it \
-       --env SELENIUM_URL=http://selenium-hub:4444/wd/hub \
-       --env BROWSER=firefox \
-       --volume $(pwd)/allure-results:/jcat/allure-results \
-       extsoft/jcat:latest
-```
-If Selenium Grid is run on your local environment using docker, you have to add `--net=<grid network>` to the command above.
+:exclamation:If Selenium Grid is run on your local environment using docker, you have to add `--net=<Selenium Grid network>` to the command above.
 
 ### Using docker-compose
+> To be able to use this type of run, you need to have Docker engine release `1.13.0+`. A simple way to check: `docker-compose -v`
+
 First of all, you need to download a YAML file: 
 ```bash
 curl -o docker-compose.yaml https://raw.githubusercontent.com/extsoft/jcat/master/docker-compose.yaml
