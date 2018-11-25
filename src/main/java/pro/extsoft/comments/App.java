@@ -1,6 +1,8 @@
 package pro.extsoft.comments;
 
-import io.github.tatools.sunshine.core.*;
+import io.github.tatools.sunshine.core.RegexCondition;
+import io.github.tatools.sunshine.core.Sun;
+import io.github.tatools.sunshine.core.VerboseRegex;
 import io.github.tatools.sunshine.testng.LoadableTestNGSuite;
 import io.github.tatools.sunshine.testng.TestNGKernel;
 
@@ -14,28 +16,13 @@ public class App {
         new Sun(
                 new TestNGKernel(
                         new LoadableTestNGSuite(
-                                new RegexCondition(
-                                        new AttributeWithPrintableValue(
-                                                "The following pattern will be used for classes filtering:",
-                                                new AttributeFromSequence(
-                                                        new AttributeOfTestPatternFromCli(),
-                                                        new Attribute() {
-                                                            @Override
-                                                            public String value() {
-                                                                return "^pro.extsoft.comments.tests(.+)?";
-                                                            }
-
-                                                            @Override
-                                                            public boolean present() {
-                                                                return true;
-                                                            }
-                                                        }
-                                                )
+                                new VerboseRegex(
+                                        new RegexCondition(
+                                                args.length == 1 ? args[0] : "^pro.extsoft.comments.tests(.+)?"
                                         )
                                 )
                         )
                 )
-
         ).shine();
     }
 }
