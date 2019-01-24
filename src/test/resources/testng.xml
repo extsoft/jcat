@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestSuite" parallel="false">
+	<test name="CommentCreationTest" preserve-order="true">
+		<classes>
+			<class name="pro.extsoft.comments.tests.CommentCreation">
+				<methods>
+					<include name="testCommentCreation"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="CommentDeletionTest" preserve-order="true">
+		<classes>
+			<class name="pro.extsoft.comments.tests.CommentDeletion">
+				<methods>
+					<include name="testCommentDeletion"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="CommentDuplicationTest" preserve-order="true">
+		<classes>
+			<class name="pro.extsoft.comments.tests.CommentDuplication">
+				<methods>
+					<include name="testCommentDuplication"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

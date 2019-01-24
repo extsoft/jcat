@@ -70,13 +70,19 @@ Use `docker-compose down` to destroy the environment.
 ## From source code
 1. Clone the repo
 2. Package tests  with `mvn clean package` (a JAR file is located under `target` directory and is named like `comments-at-x.x.x-jar-with-dependencies.jar` , where `x.x.x` is a `version` property from [pom.xml](pom.xml)).
-3. Run tests with `java -jar comments-at-x.x.x-jar-with-dependencies.jar`
+3. Run tests with `java -jar comments-at-0.2.0-fat-tests.jar`
 
 For instance,
 ```bash
 java -Dbrowser=firefox -Dselenium-url=http://127.0.0.1:4444 \
-     -jar comments-at-0.1.0-jar-with-dependencies.jar
-``` 
+     -jar comments-at-0.2.0-fat-tests.jar
+```
+or
+```bash
+ mvn clean test \
+     -DargLine="-Dbrowser=firefox -Dselenium-url=http://127.0.0.1:4444/wd/hub"
+ ```
+
 runs tests on Firefox browser using `geckodriver` started on `4444` port.
 
 ## Configuration options
