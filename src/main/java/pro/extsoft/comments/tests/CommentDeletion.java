@@ -8,6 +8,8 @@ import pro.extsoft.comments.comment.Comment;
 import pro.extsoft.comments.comment.DefaultComment;
 import pro.extsoft.comments.comment.SaveAndReturnComment;
 
+import java.io.IOException;
+
 /**
  * @author Dmytro Serdiuk (dmytro.serdiuk@gmail.com)
  * @version $Id$
@@ -15,11 +17,11 @@ import pro.extsoft.comments.comment.SaveAndReturnComment;
  */
 public class CommentDeletion extends Base {
     @Test
-    public void testCommentDeletion() {
-        MainScreen mainScreen = new RealMainScreen(this.browser());
+    public void testCommentDeletion() throws IOException {
+        MainScreen mainScreen = new RealMainScreen(this.driver,this.baseURL);
         mainScreen.open();
         Comment comment = new SaveAndReturnComment(
-                this.browser(), new DefaultComment(this.browser(), "dd47", "47", false)
+                this.driver, new DefaultComment(this.driver, "dd47", "47", false)
         );
         mainScreen.lastComments().create(comment);
         mainScreen.lastComments().delete(comment);

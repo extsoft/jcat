@@ -8,6 +8,8 @@ import pro.extsoft.comments.comment.Comment;
 import pro.extsoft.comments.comment.DefaultComment;
 import pro.extsoft.comments.comment.SaveAndReturnComment;
 
+import java.io.IOException;
+
 /**
  * @author Dmytro Serdiuk (dmytro.serdiuk@gmail.com)
  * @version $Id$
@@ -15,15 +17,15 @@ import pro.extsoft.comments.comment.SaveAndReturnComment;
  */
 public class CommentDuplication extends Base {
     @Test
-    public void testCommentDuplication() {
-        MainScreen mainScreen = new RealMainScreen(this.browser());
+    public void testCommentDuplication() throws IOException {
+        MainScreen mainScreen = new RealMainScreen(this.driver,this.baseURL);
         mainScreen.open();
         Comment comment = new SaveAndReturnComment(
-                this.browser(), new DefaultComment(this.browser(), "dd46", "46", false)
+                this.driver, new DefaultComment(this.driver, "dd46", "46", false)
         );
         mainScreen.comments("1").create(comment);
         Comment duplicate = new SaveAndReturnComment(
-                this.browser(), new DefaultComment(this.browser(), "duplicate", "48", false)
+                this.driver, new DefaultComment(this.driver, "duplicate", "48", false)
         );
         mainScreen.lastComments().duplicate(comment, duplicate);
         assert mainScreen.contains(duplicate);

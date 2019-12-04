@@ -1,5 +1,6 @@
 package pro.extsoft.comments;
 
+import org.testng.Reporter;
 import pro.extsoft.comments.comment.Comment;
 import pro.extsoft.comments.comments.Comments;
 import pro.extsoft.comments.comments.SelfLoadedComments;
@@ -7,6 +8,7 @@ import pro.extsoft.comments.elements.DefaultField;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.stream.Collectors;
@@ -14,14 +16,21 @@ import java.util.stream.Collectors;
 public class RealMainScreen implements MainScreen {
 
     private final WebDriver webDriver;
+    private String baseurl;
 
-    public RealMainScreen(WebDriver webDriver) {
+
+    public RealMainScreen(WebDriver webDriver,String url)
+    {
         this.webDriver = webDriver;
+        baseurl = url;
     }
 
     @Override
-    public void open() {
-        webDriver.get("http://commentssprintone.azurewebsites.net");
+    public void open() throws IOException {
+        webDriver.get(baseurl);
+        Reporter.log("Open URL: "+baseurl);
+        LogsWithScreenShots logsWithScreenShots = new LogsWithScreenShots(webDriver);
+        logsWithScreenShots.addlog("Try Add log with screenshot");
     }
 
     @Override

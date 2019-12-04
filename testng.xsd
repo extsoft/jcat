@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="suite" type="suiteType"/>
+  <xs:complexType name="classType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="classesType">
+    <xs:sequence>
+      <xs:element type="classType" name="class"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="testType">
+    <xs:sequence>
+      <xs:element type="classesType" name="classes"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name"/>
+  </xs:complexType>
+  <xs:complexType name="suiteType">
+    <xs:sequence>
+      <xs:element type="testType" name="test"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name"/>
+  </xs:complexType>
+</xs:schema>

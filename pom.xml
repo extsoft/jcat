@@ -3,42 +3,68 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <seleniumVersion>3.141.59</seleniumVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+
+    </properties>
     <groupId>com.extsoft</groupId>
-    <artifactId>comments-at</artifactId>
+    <artifactId>comments-tests</artifactId>
     <version>0.2.0</version>
     <build>
+
+        <scriptSourceDirectory>${basedir}/src/main/java/pro</scriptSourceDirectory>
+        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+        <outputDirectory>${basedir}/target/classes</outputDirectory>
+        <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
+
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>pro.extsoft.comments.App</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${basedir}/testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.webdriverextensions</groupId>
+                <artifactId>webdriverextensions-maven-plugin</artifactId>
+                <version>3.2.0</version>
+
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
                         <goals>
-                            <goal>single</goal>
+                            <goal>install-drivers</goal>
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <drivers>
+                        <driver>
+                            <name>chromedriver</name>
+                            <platform>windows</platform>
+                            <bit>64</bit>
+                            <version>77.0.3865.40</version>
+                            <url>http://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_win32.zip</url>
+                        </driver>
+                     </drivers>
+                </configuration>
+
             </plugin>
+
         </plugins>
     </build>
     <dependencies>
@@ -51,6 +77,7 @@
             <groupId>io.github.tatools</groupId>
             <artifactId>sunshine-testng</artifactId>
             <version>0.3.0</version>
+            <!--<version>0.3.0</version>-->
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -62,5 +89,46 @@
             <artifactId>allure-testng</artifactId>
             <version>2.0-BETA3</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.14.3</version>
+            <scope>compile</scope>
+
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${seleniumVersion}</version>
+            <!--scope>test</scope-->
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>${seleniumVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.directory.studio</groupId>
+            <artifactId>org.apache.commons.io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
+            <version>3.141.59</version>
+        </dependency>
     </dependencies>
+    <reporting>
+        <outputDirectory>${basedir}/target/surefire-reports</outputDirectory>
+    </reporting>
 </project>

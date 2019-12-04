@@ -9,6 +9,8 @@ import pro.extsoft.comments.comment.DefaultComment;
 import pro.extsoft.comments.comment.SaveAndReturnComment;
 import pro.extsoft.comments.comments.Comments;
 
+import java.io.IOException;
+
 /**
  * @author Dmytro Serdiuk (dmytro.serdiuk@gmail.com)
  * @version $Id$
@@ -16,12 +18,12 @@ import pro.extsoft.comments.comments.Comments;
  */
 public class CommentCreation extends Base {
     @Test
-    public void testCommentCreation() {
-        MainScreen mainScreen = new RealMainScreen(this.browser());
+    public void testCommentCreation() throws IOException {
+        MainScreen mainScreen = new RealMainScreen(this.driver,this.baseURL);
         mainScreen.open();
         Comments comments = mainScreen.comments("1");
         Comment comment = new SaveAndReturnComment(
-                this.browser(), new DefaultComment(this.browser(), "dd45", "45", false)
+                this.driver, new DefaultComment(this.driver, "dd45", "45", false)
         );
         comments.create(comment);
         assert mainScreen.contains(comment);

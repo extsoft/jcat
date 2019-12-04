@@ -1,56 +1,57 @@
 package pro.extsoft.comments;
 
-import io.qameta.allure.Allure;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Reporter;
+import org.testng.annotations.*;
 
-import java.io.ByteArrayInputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public abstract class Base {
 
     private final WebDriver[] browsers = new WebDriver[1];
-    private final Map<String, Capabilities> options;
+    ArrayList<String> resutltList = new ArrayList<String>();
+    protected WebDriver driver = null;
+    protected  String baseURL;
+    protected  String pathToconfiguration;
+    private static String log ="";
 
-    protected Base() {
-        this.options = new HashMap<>();
-        this.options.put("firefox", new FirefoxOptions());
-        this.options.put("chrome", new ChromeOptions());
+
+
+
+    @Parameters({"currentBrowser","testProperty"})
+    @BeforeClass()
+    public  void setUp(String currentBrowser, String testProperty) throws IOException {
+        Config config = new Config();
+        resutltList = config.getrestProperty("base.url",testProperty);
+        baseURL = resutltList.get(0);
+        pathToconfiguration = resutltList.get(1);
+        if(currentBrowser.equals("chrome"))
+        {
+            String  path = "drivers\\chromedriver-windows-64bit.exe";
+            File file = new File(path);
+            System.setProperty("webdriver.chrome.driver",file.getAbsolutePath());
+            driver = new ChromeDriver();
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        }
+        //TODO: add ability launch with firefox
     }
 
-    protected final WebDriver browser() {
-        return browsers[0];
+    @AfterClass
+    public void tearDown() throws Exception {
+        // Allure.addAttachment(
+        //      "before-quit", "image/png",
+        //        new ByteArrayInputStream(((TakesScreenshot) this.browser()).getScreenshotAs(OutputType.BYTES)),
+        //         ".png"
+        //  );
+
+        this.driver.close();
     }
 
-    @BeforeTest
-    public void setUp() throws MalformedURLException {
-        final WebDriver driver = new RemoteWebDriver(
-                new URL(System.getProperty("selenium-url", "http://localhost:9515")),
-                this.options.get(System.getProperty("browser", "chrome").toLowerCase())
-        );
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-        browsers[0] = driver;
-    }
 
-    @AfterTest
-    public void tearDown() {
-        Allure.addAttachment(
-                "before-quit", "image/png",
-                new ByteArrayInputStream(((TakesScreenshot) this.browser()).getScreenshotAs(OutputType.BYTES)),
-                ".png"
-        );
-        this.browser().quit();
-    }
 }

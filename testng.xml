@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Cisco Smoke ">
+
+    <test name="CheckComments" >
+        <parameter name = "currentBrowser" value="chrome"/>
+        <parameter name = "testProperty" value="dev.properties"/>
+        <classes>
+            <class name="pro.extsoft.comments.tests.CommentCreation"/>
+            <class name="pro.extsoft.comments.tests.CommentCreation"/>
+            <class name="pro.extsoft.comments.tests.CommentDeletion"/>
+            <class name="pro.extsoft.comments.tests.CommentDuplication"/>
+        </classes>
+    </test>
+</suite>
