@@ -8,6 +8,7 @@ WORKDIR /jcat
 COPY --from=jar /jcat/target/comments-*-jar-with-dependencies.jar jcat.jar
 COPY jcat.sh .
 VOLUME /jcat/allure-results
+RUN chmod +x jcat.sh
 LABEL maintainer="Dmytro Serdiuk <dmytro.serdiuk@gmail.com>" \
       sources="https://github.com/extsoft/jcat" \
       versions="https://store.docker.com/community/images/extsoft/jcat/tags"
