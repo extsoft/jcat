@@ -7,7 +7,7 @@ This repo provides a sample set of automated tests for [http://commentssprintone
 ![](https://travis-ci.org/extsoft/jcat.svg?branch=master)
 
 ## Used tools
-- [Java 8](http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html) as a programming language
+- [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/index.html) as a programming language
 - [maven](https://maven.apache.org) as a build system
 - [Allure](http://allure.qatools.ru) as a reporting engine
 - [Selenium](https://www.seleniumhq.org) as a WEB automation framework
