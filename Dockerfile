@@ -1,9 +1,9 @@
-FROM maven:3.5.3-jdk-8-slim as jar
+FROM maven:3.6.3-jdk-11-slim as jar
 WORKDIR /jcat
 COPY . .
 RUN mvn clean package
 
-FROM openjdk:8-alpine
+FROM openjdk:11
 WORKDIR /jcat
 COPY --from=jar /jcat/target/comments-*-jar-with-dependencies.jar jcat.jar
 COPY jcat.sh .
