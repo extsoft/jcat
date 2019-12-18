@@ -36,7 +36,7 @@ public abstract class Base {
     @BeforeTest
     public void setUp() throws MalformedURLException {
         final WebDriver driver = new RemoteWebDriver(
-                new URL(System.getProperty("selenium-url", "http://localhost:9515/wd/hub")),
+                new URL(System.getProperty("selenium-url", "http://localhost:9515")),
                 this.options.get(System.getProperty("browser", "chrome").toLowerCase())
         );
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
