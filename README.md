@@ -33,19 +33,18 @@ First of all, you need to run desired WebDriver (`chromedriver` or `geckodriver`
 Then, run the following command with the correct value for `SELENIUM_URL` and `BROWSER` (see [configuration options](#configuration-options)  for the details):
 ```bash
 docker run -it \
-       --net=host \
-       --env SELENIUM_URL=http://docker.for.mac.localhost:4444 \
+       --network=host \
+       --env SELENIUM_URL=http://host.docker.internal:4444 \
        --env BROWSER=firefox \
        --volume $(pwd)/allure-results:/jcat/allure-results \
        extsoft/jcat:latest
 ```
 
 :exclamation:As the browser driver is run on the localhost, we have to give proper URL for `SELENIUM_URL` option. Docker provides several networking features for each OS which allow binding of host machine's hostname into a container. As the result, if you bind a container to host's network with `--net=host` and want access host's resources, correct hostname is
-- `docker.for.win.localhost` for Windows
-- `docker.for.mac.localhost` for OSX
+- `host.docker.internal` for Windows or OSX
 - `localhost` for Linux
 
-:exclamation:If Selenium Grid is run on your local environment using docker, you have to add `--net=<Selenium Grid network>` to the command above.
+:exclamation:If Selenium Grid is run on your local environment using docker, you have to add `--network=<Selenium Grid network>` to the command above.
 
 ### Using docker-compose
 > To be able to use this type of run, you need to have Docker engine release `1.13.0+`. A simple way to check: `docker-compose -v`
