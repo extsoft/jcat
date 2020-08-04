@@ -10,7 +10,7 @@ wait_selenium() {
   counter=0
   while true; do
     counter=$((counter+1))
-    ( wget --quiet --output-document - ${SELENIUM_URL}/status | grep '"ready":true') ||
+    ( wget --quiet --output-document - ${SELENIUM_URL}/status | grep 'true,') ||
       {
         if test ${counter} -gt 30 ; then
           echo "Operation timed out!" >&2

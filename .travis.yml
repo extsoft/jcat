@@ -4,5 +4,4 @@ services:
   - docker
 
 script:
-  - docker-compose build --no-cache
-  - docker-compose up --abort-on-container-exit jcat-on-firefox
+  - docker-compose up --build --abort-on-container-exit jcat-on-firefox
